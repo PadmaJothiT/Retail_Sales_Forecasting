@@ -11,6 +11,7 @@
 ### Matplotlib.Plotly
 ### Seaborn
 ### Scikit
+### Power BI
 ### Streamlit
 
 ## Steps involved in this Project:
@@ -22,4 +23,5 @@
 ### Data Preprocessing: In Markdown columns some null values were presented replacing with them zero "0" will make the dataset more effective splitting date in month,year and day wise.
 ### Exploratory Data Analysis: As the data is no more noisy it need not need any statistical tools to the dataset, visualizing the dataset with the charts can make in eda part.
 ### Model Training and Evaluation : Three models have been used for model training and evaluation Linear Regression, Random Forest Regression and Gradient Boosting(XGBoost).Evaluation metics like mean_absolute_error,root_mean_squared_error, and model score
-### Predicting the sale price: In these three regression models Random Forest Regression models have predicting the best accurate sale price. So, it has been used for predicting the sale price.
+### Predicting the sale price: Using three regression models Random Forest Regression models have predicting the best accurate sale price. So, it has been used for predicting the sale price.
+### Data Visualisation : Visualizing the data in Power BI with extracted data.
