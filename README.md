@@ -1,4 +1,5 @@
 # Retail_Sales_Forecasting
+Retail Sales Forecasting project aims to predict the sales price of a Departmental store.
 
 ## Retail Sales Forecasting dataset the project aims to analyze forecast department-wise weekly sales for each store for the following year using historical sales data, which will help make informed business decisions, especially during holiday periods and promotional markdown events. The streamlined Streamlit application integrates Exploratory Data Analysis (EDA) to find trends, patterns, and data insights. It offers users interactive tools to explore top-performing stores and departments, conduct insightful feature comparisons, and obtain personalized sales forecasts. With a commitment to delivering actionable insights, the project aims to optimize decision-making processes within the dynamic retail landscape.
 
