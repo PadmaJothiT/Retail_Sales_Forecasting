@@ -30,7 +30,7 @@ selected = option_menu(None, ["SALES PREDICTION"],
 if selected == "SALES PREDICTION":
         
     if "SALES PREDICTION":
-        col1,col2,col3,col4,col5 = st.columns(5,gap='large')
+        col1,col2,col3 = st.columns(3,gap='large')
         with col1:
             #store
             store_list = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30',
@@ -48,8 +48,6 @@ if selected == "SALES PREDICTION":
             #type
             type_list = {'A':0,'B':1,'C':2}
             type = st.selectbox('**Type**',type_list)
-
-        with col2:
             
             #size
             size_list = ['151315', '202307', '37392', '205863', '34875','202505','70713','155078',
@@ -64,9 +62,19 @@ if selected == "SALES PREDICTION":
             isholiday = st.selectbox('**IsHoliday**',isholiday_list)
 
             #Date
-            duration = st.date_input("Select the **:red[Date]**", datetime.date(2012, 7, 20), min_value=datetime.date(2010, 2, 5), max_value=datetime.date.today())
+            month_list = ['1','2','3','4','5','6','7','8','9','10','11','12']
+            month = st.selectbox('**Month**',month_list)
 
-        with col3:
+        with col2:
+
+            year_list = ['2010','2011','2012']
+            year = st.selectbox('**Year**',year_list)
+            
+
+            week_list = [ '1',  '2',  '3',  '4', '5',  '6',  '7',  '8',  '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23',
+                        '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42',
+                        '43', '44', '45', '46', '47', '48', '49', '50', '51', '52']
+            week =st.selectbox('*Month**',month_list)
 
             #Temperature
             temperature = st.number_input('Enter the **:red[Temperature]** in Fahreneit**---> **:green[(min=5.54 & max=100.14)]**', value=90.0,min_value=5.54,max_value=100.14,)
@@ -77,19 +85,17 @@ if selected == "SALES PREDICTION":
             #CPI
             cpi = st.number_input('Enter the **:red[CPI]** ----------> **:green[(min=126.0 & max=227.47)]**',value=211.77,min_value=126.0,max_value=227.47)
 
-        with col4:
-
             #Unemployment
             unemployment = st.number_input('Enter the **:red[Unemployment Rate]** in percentage **:green[(min=3.879 & max=14.313)]**',value=8.106,min_value=3.879,max_value=14.313)
-            
+
+        with col3:
+
             #markdown
             markdown1 = st.number_input('Enter the **:orange[Markdown1]** in dollars -------- **:green[(min=0.27,max=88646.76)]**',value=2000.00,min_value=0.27,max_value=88646.76)
             markdown1= markdown1
 
             markdown2 = st.number_input('Enter the **:orange[Markdown2]** in dollars -------- **:green[(min=0.02,max=104519.54)]**',value=65000.00,min_value=0.02,max_value=104519.54)
             markdown2= markdown2
-
-        with col5:
 
             markdown3=st.number_input('Enter the **:orange[Markdown3]** in dollars -------- **:green[(min=0.01,max=141630.61)]**',value=27000.00,min_value=0.01,max_value=141630.61)
             markdown3= markdown3
@@ -113,32 +119,29 @@ if selected == "SALES PREDICTION":
                 except ValueError:
                     return np.nan
                 
-            input_data = [store, dept, size, type, temperature, isholiday, fuel_Price, cpi, unemployment,markdown1, markdown2, markdown3, markdown4, markdown5, duration.year, duration.month, duration.day]
+            input_data = [store, dept, isholiday, temperature, fuel_Price, markdown1, markdown2, markdown3, markdown4, markdown5, cpi, unemployment, type, size, month, year, week]
             cleaned_data = [safe_convert(store),
                             safe_convert(dept),
-                            safe_convert(size),
-                            safe_convert(type),
-                            safe_convert(temperature),
                             safe_convert(isholiday),
+                            safe_convert(temperature),
                             safe_convert(fuel_Price),
-                            safe_convert(cpi),
-                            safe_convert(unemployment),
                             safe_convert(markdown1),
                             safe_convert(markdown2),
                             safe_convert(markdown3),
                             safe_convert(markdown4),
                             safe_convert(markdown5),
-                            safe_convert(duration.year),
-                            safe_convert(duration.month),
-                            safe_convert(duration.day)
+                            safe_convert(cpi),
+                            safe_convert(unemployment),
+                            safe_convert(type),
+                            safe_convert(size),
+                            safe_convert(month),
+                            safe_convert(year),
+                            safe_convert(week)
                             ]
             
-            # Check for non-finite values
-            if not all(np.isfinite(cleaned_data)):
-                st.error("Input data contains non-finite values (NaN, Inf, or -Inf). Please check your inputs.")
-            else:
-                input_data = np.array(cleaned_data).reshape(1, -1)
-                result = model.predict(input_data)
-                st.success(f'Predicted weekly sales of the retail store is: $ {result[0]:.2f}')
+            input_data = np.array(cleaned_data).reshape(1,-1)
+            # Make a prediction
+            y_pred = model.predict(input_data)
+            st.success(f"**Predicted Sales price: {y_pred}**")
         else: 
             st.error("Please enter valid values")
