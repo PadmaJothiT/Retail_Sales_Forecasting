@@ -7,7 +7,6 @@ Retail Sales Forecasting project aims to predict the sales price of a Department
 
 ## Key technologies used in this project
 ### Pandas
-### SQL
 ### Numpy
 ### Matplotlib.Plotly
 ### Seaborn
