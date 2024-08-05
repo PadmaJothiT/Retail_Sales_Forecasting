@@ -6,13 +6,13 @@ Retail Sales Forecasting dataset the project aims to analyze forecast department
 #  Table of Contents:
 
 ## Key technologies used in this project
-Pandas
-Numpy
-Matplotlib.Plotly
-Seaborn
-Scikit
-Power BI
-Streamlit
+## Pandas
+## Numpy
+## Matplotlib.Plotly
+## Seaborn
+## Scikit
+## Power BI
+## Streamlit
 
 ## Steps involved in this Project:
 
